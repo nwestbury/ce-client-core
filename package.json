@@ -12,6 +12,7 @@
     "pouchdb-adapter-http": "^5.4.5",
     "pouchdb-adapter-websql": "^5.4.5",
     "pouchdb-core": "^5.4.5",
+    "pouchdb-node": "^5.4.5",
     "pouchdb-replication": "^5.4.5",
     "pouchdb-upsert": "^2.0.2"
   },
