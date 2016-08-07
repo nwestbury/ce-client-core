@@ -2,8 +2,8 @@
 require("babel-core/register");
 require("babel-polyfill");
 
-const PouchDB: any = require('pouchdb-node');
-var db = new PouchDB('localdb');
+//const PouchDB: any = require('pouchdb-node');
+//var db = new PouchDB('localdb');
 
 var doc = {
   "_id": "mittens",
@@ -17,12 +17,12 @@ var doc = {
   ]
 };
 
-
 (async function() {
 	try {
 		console.log("test");
-		await db.put(doc);
-
+		let resp = await db.put(doc);
+		console.log(resp);
+		
 		let doc = await db.get('mittens');
 		console.log(doc);
 	} catch(err) {
