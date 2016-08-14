@@ -189,12 +189,19 @@ function actions(dispatch) {
 /////
 //database connector HOC (equivalent to redux connect)
 
-class DatabaseConnect extends Component {
-	
+const DatabaseConnect = WrappedComponent => class extends Component {
+	static contextTypes = {
+        databaseActions: React.PropTypes.object,
+    };
+
+    render() {
+        return <WrappedComponent {...this.props} databaseActions={this.context.databaseActions} />;
+    }
 }
 
 module.exports = {
 	DatabaseProvider,
+	DatabaseConnect,
 	copyReducer,
 	copyActions: { updateLastSeq, upsertCopy },
 }
