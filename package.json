@@ -6,13 +6,11 @@
   "scripts": {
     "build": "babel --presets es2015,react,stage-0 src -d build"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Nathan Liebrecht",
   "dependencies": {
     "pouchdb-adapter-http": "^5.4.5",
     "pouchdb-adapter-websql": "^5.4.5",
     "pouchdb-core": "^5.4.5",
-    "pouchdb-node": "^5.4.5",
     "pouchdb-replication": "^5.4.5",
     "pouchdb-upsert": "^2.0.2"
   },
