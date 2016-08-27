@@ -117,7 +117,7 @@ const DatabaseProvider = connect(select, actions)(class extends Component {
 		
 		this.localdb = null;
 		this.remotedb = null;
-		this.changeListenner = null;
+		this.changeListener = null;
 		this.liveReplicator = null;
 		
 		this.login = this.login.bind(this);
@@ -141,7 +141,7 @@ const DatabaseProvider = connect(select, actions)(class extends Component {
 		this.localdb = new PouchDB('localdb');
 		this.remotedb = new PouchDB(remotedbPath);
 		
-		this.changeListenner = this.localdb.changes({live: true, since: this.props.lastSeq, include_docs: true}).on('change', function (change) {
+		this.changeListener = this.localdb.changes({live: true, since: this.props.lastSeq, include_docs: true}).on('change', function (change) {
 			let doc = change.doc;
 			if (doc.type === 'clip') {
 				this.props.upsertCopy(copyObj)
@@ -166,7 +166,7 @@ const DatabaseProvider = connect(select, actions)(class extends Component {
 		});
 	}
 	logout() {
-		this.changeListenner.cancel();
+		this.changeListener.cancel();
 		this.liveReplicator.cancel();
 		this.localdb.destroy();
 		this.remotedb.destroy();
@@ -182,7 +182,7 @@ function select(store) {
 function actions(dispatch) {
 	return {
 		updateLastSeq: (lastSeq) => dispatch(updateLastSeq(lastSeq)),
-		upsertCopy: (copyObj) => dispatch()
+		upsertCopy: (copyObj) => dispatch(upsertCopy(copyObj))
 	}
 }
 
