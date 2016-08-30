@@ -103,7 +103,7 @@ function deleteClip(getDb, clipId) {
 function addClip(getDb, clipObj) {
 	let db = getDb();
 	if(!clipObj._id.match(/clip\/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/))
-		throw "invalid id format";
+		throw "invalid clip id format";
 	
 	db.put(clipObj);
 }
@@ -129,8 +129,8 @@ const DatabaseProvider = connect(select, actions)(class extends Component {
 		
 		return {
 			databaseActions: {
-				deleteClip: deleteClip.bind(undefined, getDb),
-				addClip: addClip.bind(undefined, getDb),
+				deleteClip: deleteClip.bind(getDb, undefined),
+				addClip: addClip.bind(getDb, undefined),
 			}
 		};
 	}
