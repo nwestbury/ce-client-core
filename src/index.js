@@ -77,9 +77,9 @@ function copy(state = initialState, action) {
 				copies.splice(index, 1);
 			}
 		} else {
-			var index = binarySearch(copies, newDoc._id);
-			var copyObj = copies[index];
-			if (copyObj && copyObj._id === newDoc._id) { // update
+			var index = binarySearch(copies, copyObj._id);
+			var oldObj = copies[index];
+			if (oldObj && copyObj._id === oldObj._id) { // update
 				copies[index] = newDoc;
 			} else { // insert
 				copies.splice(index, 0, newDoc);
